@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+    {% block title %}
+    {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+<h1>
+    <a href="{% url 'articles:list' %} ">{% block Articlelists %}{% endblock %} </a>
+</h1>
+<header>
+    <nav class="topnav">
+
+    {% if user.is_authenticated %}
+
+      <a class="active" href="{% url 'articles:list' %}">مقالات</a>
+
+
+        <form class="highlight" action="{% url 'accounts:logout' %}" method="post">
+            {% csrf_token %}
+          <a>  <button  type="submit" >خروج</button></a>
+        </form>
+
+    <a  href="{% url 'articles:create' %}">مقاله جدید</a>
+      <a href="{% url 'about' %}"> درباره</a>
+
+    {% else %}
+    <a class="active" href="{% url 'articles:list' %}">مقالات</a>
+
+    <a href="{% url 'accounts:singup' %}">ثبت نام</a>
+
+    <a href="{% url 'accounts:login' %}">ورود</a>
+
+        <a href="{% url 'about' %}"> درباره</a>
+
+
+
+    {% endif %}
+</nav>
+</header>
+<div class="wrapper">
+{% block content %}
+{% endblock %}
+</div>
+</body>
+</html>

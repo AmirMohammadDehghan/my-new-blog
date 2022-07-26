@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    articles
+{% endblock %}
+{% block content %}
+    <h1>
+    <a href="{% url 'articles:list' %} ">لیست مقالات</a>
+    </h1>
+<div class="articles">
+  {% for article in articles %}
+  <div class="article">
+    <h2><a href="{% url 'articles:detail' slug=article.slug %}">{{article.title}}</a></h2>
+    <style >
+      img {width:17.5em; height:10em; float:center}
+    </style>
+    <img src="{{ article.image.url }}" alt="">
+    <p>... {{article.snippet }}</p>
+    <h6>{{article.date}}</h6>
+    <p class="author">added by {{article.author.username}}</p>
+  </div>
+
+  {% endfor %}
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="article-detail">
+<div class="article">
+    <img src="{{ article.image.url }}" alt="">
+    <h1>{{ article.title }}</h1>
+    <style>
+      iframe { position: relative;
+      height:22.4em;
+      width:40em;
+      border:3em solid:midnightblue;
+      border-radius:3em}
+    </style>
+    <p>{{ article.body |safe}}</p>
+    <p>{{ article.date }}</p>
+    <p>{{article.author.username}}:نویسنده</p>
+</div>
+</div>
+{% endblock %}
